@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: waka.phpw::lang.models.document.name
+        span: left
+        required: true
+        permissions: [waka.worder.admin.*]
+    slug:
+        label: waka.phpw::lang.models.document.slug
+        span: right
+        required: true
+        preset: name
+        permissions: [waka.worder.admin.super]
+    path:
+        label: waka.phpw::lang.models.document.path
+        span: left
+        type: mediafinder
+        required: true
+        permissions: [waka.worder.admin.super]
+    output_name:
+        label: waka.phpw::lang.models.document.output_name
+        span: auto
+        permissions: [waka.worder.admin.*]

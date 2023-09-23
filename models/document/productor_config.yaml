@@ -1,0 +1,4 @@
+fields: 
+  output_name: 
+    label: nom de sortie 
+    comment: Twig autorisé. 

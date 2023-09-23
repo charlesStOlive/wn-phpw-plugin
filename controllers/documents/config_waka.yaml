@@ -1,0 +1,46 @@
+# ===================================
+#  WakaController | Workflow | Productor |  Behavior Config
+# ===================================
+
+
+modelClass: Waka\Phpw\Models\Document
+backendUrl: waka/phpw/documents
+
+workflow: false 
+
+
+controllerConfig:
+    breadcrump:
+        inSettings: true 
+        title: waka.phpw::lang.models.document.label
+        rows: 
+            index: 
+                label: waka.phpw::lang.controllers.documents.label
+                url: waka/phpw/documents 
+    index:
+        base:
+            create: 
+                show: true
+                permissions: [waka.phpw.*]
+            reorder: 
+                show: true  
+                permissions: []
+            delete: 
+                show: true
+                permissions: [waka.phpw.*]
+        # partials:
+        #     index_btn:
+        #         url: $/waka/phpw/controllers/documents/_index_btn.php
+    update:
+        partials:
+            update_btn:
+                url: $/waka/phpw/controllers/documents/_update_btn.php
+        
+ 
+reorder:
+    title: waka.wutils::lang.global.reorder 
+    # reorderRelations:
+    #     model:
+    #         title: Réordonner le {model} # Reorder Title
+    #         nameFrom: name # Attribute name
+    #         relationName: setups   # Model Class name

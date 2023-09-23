@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: waka.phpw::lang.controllers.documents.label
+
+# Model Form Field configuration
+form: $/waka/phpw/models/document/fields.yaml
+
+# Model Class name
+modelClass: Waka\Phpw\Models\Document
+
+# Default redirect location
+defaultRedirect: waka/phpw/documents
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: waka/phpw/documents/update/:id
+    redirectClose: waka/phpw/documents
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: waka/phpw/documents
+    redirectClose: waka/phpw/documents
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

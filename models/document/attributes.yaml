@@ -1,0 +1,15 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+icon: icon-info
+attributes:
+    name:
+        label: waka.phpw::lang.models.document.name
+    slug:
+        label: waka.phpw::lang.models.document.slug
+    output_name:
+        label: waka.phpw::lang.models.document.output_name
+    updated_at:
+        label: waka.wutils::lang.global.updated_at
+        type: date-medium

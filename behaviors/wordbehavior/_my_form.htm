@@ -1,0 +1,29 @@
+<?= Form::open() ?>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><?=e(trans('waka.phpw::lang.models.document.ctrls.create'))?></h4>
+        </div>
+        <div class="modal-body">
+            <?=  $wordBehaviorWidget->render() ?>
+        </div>
+        <div class="modal-footer">
+            <button type="submit"
+                    data-request="onTestWordValidation"
+                    data-request-data="redirect:0, modelId:'<?=$modelId?>'"
+                    class="btn btn-primary">
+                <?=e(trans('waka.wutils::lang.global.validate'))?>
+            </button>
+            <button type="button"
+                    class="btn btn-default"
+                    data-dismiss="popup">
+                <?=e(trans('waka.wutils::lang.global.cancel'))?>
+            </button>
+        </div>
+    </div>
+</div>
+<?= Form::close() ?>

@@ -1,0 +1,53 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+fields:
+    name: 
+        label: waka.phpw::lang.models.document.name
+        span: auto
+    slug:
+        label: waka.phpw::lang.models.document.slug
+        span: auto
+    output_name:
+        label: waka.phpw::lang.models.document.output_name
+        span: auto
+        permissions: [waka.worder.admin.*]
+    map_key:
+        label: waka.phpw::lang.models.document.map_key
+        comment: waka.phpw::lang.models.document.map_key_com
+        span: auto
+        permissions: [waka.worder.admin.*]
+    path:
+        label: waka.phpw::lang.models.document.path
+        type: mediafinder
+        span: auto
+        permissions: [waka.worder.admin.*]
+tabs:
+    defaultTab: waka.mailer::wakamail.tab_edit
+    icons: 
+        waka.phpw::lang.models.document.tab_edit: icon-pencil
+        waka.phpw::lang.models.document.tab_options: icon-cog
+        waka.phpw::lang.models.document.tab_temp: icon-cog
+    fields:    
+        rule_asks:
+            label: waka.phpw::lang.models.document.rule_asks
+            span: full
+            type: rulebuilder
+            targetProductor: document
+            full_access: waka.rules.asks.admin
+            ruleMode: ask
+            showAttributes: true
+            permissions: [waka.rules.asks.*]
+            tab: waka.phpw::lang.models.document.tab_edit
+secondaryTabs:
+    fields:
+        # info:
+        #     type: modelinfo
+        #     mode: secondary
+        #     src: /waka/phpw/models/document/fields_for_side_bar.yaml
+        # infos:
+        #     span: full
+        #     type: modelinfo
+        #     permissions: [waka.worder.admin.*]
+        #     tab: waka.phpw::lang.models.document.tab_infos
+        #     dsMap: main
