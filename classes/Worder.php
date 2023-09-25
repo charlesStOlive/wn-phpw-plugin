@@ -4,13 +4,12 @@ namespace Waka\Phpw\Classes;
 
 use Closure;
 use Waka\Productor\Interfaces\BaseProductor;
-use Waka\Productor\Interfaces\SaveTo;
 use Lang;
 use Arr;
 use ApplicationException;
 use ValidationException;
 
-class Worder implements BaseProductor, SaveTo
+class Worder implements BaseProductor
 {
     use \Waka\Productor\Classes\Traits\TraitProductor; 
 
@@ -38,6 +37,19 @@ class Worder implements BaseProductor, SaveTo
         $formWidget = self::getAndSetAsks($productorModel,$formWidget);
         return $formWidget;
     }
+
+    /**
+     * Instancieation de la class creator
+     *
+     * @param string $url
+     * @return \Spatie\Browsershot\Browsershot
+     */
+    private static function instanciateCreator(string $templateCode, array $vars)
+    {
+        $productorClass = self::getConfig()['productorCreator'];
+        $class = new $productorClass($templateCode, $vars);
+        return $class;
+    }
     
 
     public static function execute($templateCode, $productorHandler, $allDatas):array {
@@ -54,7 +66,7 @@ class Worder implements BaseProductor, SaveTo
             //trace_log('data dsMap!',$data);
         }
         if($productorHandler == "saveTo") {
-            $link = self::saveTo($templateCode, $data, [], '', function($doc) use($allDatas) {
+            $link = self::saveTo($templateCode, $data, function($doc) use($allDatas) {
                 $doc->setOutputName(\Arr::get($allDatas, 'productorDataArray.output_name'));
             });
             return [
@@ -70,9 +82,9 @@ class Worder implements BaseProductor, SaveTo
         }
     }
 
-    public static function saveTo(string $templateCode, array $vars = [], array $options = [], string $path = '',  Closure $callback = null) {
+    public static function saveTo(string $templateCode, array $vars = [],  Closure $callback = null) {
         // Créer l'instance de pdf
-        $creator = self::instanciateCreator($templateCode, $vars, $options);
+        $creator = self::instanciateCreator($templateCode, $vars);
         // Appeler le callback pour définir les options
         if (is_callable($callback)) {
             $callback($creator);

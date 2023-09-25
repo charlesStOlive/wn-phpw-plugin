@@ -19,12 +19,11 @@ class WordCreator
     private $outputName;
 
 
-    public function __construct($template,$vars, $options = [])
+    public function __construct($template,$vars)
     {
         \PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);
         $this->doc = Document::where('slug', $template)->first();
         $this->vars = $vars;
-        //
         $this->templateProcessor = $this->setTemplateProcessor();
     }
 
