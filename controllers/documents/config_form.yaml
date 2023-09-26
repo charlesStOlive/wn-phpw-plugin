@@ -23,7 +23,7 @@ create:
 # Update page
 update:
     title: backend::lang.form.update_title
-    redirect: waka/phpw/documents
+    redirect: waka/phpw/documents/update/:id
     redirectClose: waka/phpw/documents
 
 # Preview page
