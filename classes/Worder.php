@@ -3,22 +3,18 @@
 namespace Waka\Phpw\Classes;
 
 use Closure;
-use Waka\Productor\Interfaces\BaseProductor;
+use \Waka\Productor\Classes\Abstracts\BaseProductor;
 use Lang;
 use Arr;
 use ApplicationException;
 use ValidationException;
 
-class Worder implements BaseProductor
+class Worder extends BaseProductor
 {
-    use \Waka\Productor\Classes\Traits\TraitProductor; 
-
-    public static function getConfig()
-    {
-        return [
-            'label' => Lang::get('waka.phpw::lang.driver.label'),
+    public static $config =  [
+            'label' => 'waka.phpw::lang.driver.label',
             'icon' => 'icon-file-word-o',
-            'description' => Lang::get('waka.phpw::lang.driver.description'),
+            'description' => 'waka.phpw::lang.driver.description',
             'productorModel' => \Waka\Phpw\Models\Document::class,
             'productorCreator' => \Waka\Phpw\Classes\WordCreator::class,
             'productor_yaml_config' => '~/plugins/waka/phpw/models/document/productor_config.yaml',
@@ -28,45 +24,16 @@ class Worder implements BaseProductor
                     'handler' => 'saveTo',
             ]],
         ];
-    }
 
-    public static function updateFormwidget($slug, $formWidget) {
-        $productorModel = self::getProductor($slug);
-        $formWidget->getField('output_name')->value = $productorModel->output_name;
-        //Je n'ais pas trouvé de solution pour charger les valeurs. donc je recupère les asks dans un primer temps avec une valeur par defaut qui ne marche pas et je le réajoute ensuite.... 
-        $formWidget = self::getAndSetAsks($productorModel,$formWidget);
-        return $formWidget;
-    }
-
-    /**
-     * Instancieation de la class creator
-     *
-     * @param string $url
-     * @return \Spatie\Browsershot\Browsershot
-     */
-    private static function instanciateCreator(string $templateCode, array $vars)
-    {
-        $productorClass = self::getConfig()['productorCreator'];
-        $class = new $productorClass($templateCode, $vars);
-        return $class;
-    }
     
 
-    public static function execute($templateCode, $productorHandler, $allDatas):array {
-        //trace_log($allDatas);
-        $modelId = Arr::get($allDatas, 'modelId');
-        $modelClass = Arr::get($allDatas, 'modelClass');
-        $dsMap = Arr::get($allDatas, 'dsMap', null);
-        //
-        $targetModel = $modelClass::find($modelId);
-        $data = [];
-        if ($targetModel) {
-            //trace_log('dsMap key!',$dsMap);
-            $data = $targetModel->dsMap($dsMap);
-            //trace_log('data dsMap!',$data);
-        }
+    
+    
+
+    public function execute($templateCode, $productorHandler, $allDatas):array {
+        $this->getBaseVars($allDatas);
         if($productorHandler == "saveTo") {
-            $link = self::saveTo($templateCode, $data, function($doc) use($allDatas) {
+            $link = self::saveTo($templateCode, $this->data, function($doc) use($allDatas) {
                 $doc->setOutputName(\Arr::get($allDatas, 'productorDataArray.output_name'));
             });
             return [
@@ -80,6 +47,27 @@ class Worder implements BaseProductor
         } else {
             return [];
         }
+    }
+
+    /**
+     * Instancieation de la class creator
+     *
+     * @param string $url
+     * @return \Spatie\Browsershot\Browsershot
+     */
+    private static function instanciateCreator(string $templateCode, array $vars)
+    {
+        $productorClass = self::getStaticConfig('productorCreator');
+        $class = new $productorClass($templateCode, $vars);
+        return $class;
+    }
+
+    public static function updateFormwidget($slug, $formWidget) {
+        $productorModel = self::getProductor($slug);
+        $formWidget->getField('output_name')->value = $productorModel->output_name;
+        //Je n'ais pas trouvé de solution pour charger les valeurs. donc je recupère les asks dans un primer temps avec une valeur par defaut qui ne marche pas et je le réajoute ensuite.... 
+        // $formWidget = self::getAndSetAsks($productorModel,$formWidget);
+        return $formWidget;
     }
 
     public static function saveTo(string $templateCode, array $vars = [],  Closure $callback = null) {
@@ -96,4 +84,5 @@ class Worder implements BaseProductor
         }
 
     }
+
 }
