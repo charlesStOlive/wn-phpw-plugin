@@ -39,7 +39,7 @@ class Worder extends BaseProductor
             return [
                 'message' => 'Document prêt pour télechargement',
                 'btn' => [
-                    'label' => 'Télécharger le fichier',
+                    'label' => 'waka.productor::lang.drivers.sucess_label.close_download',
                     'request' => 'onCloseAndDownload',
                     'link' => $link
                 ],
@@ -62,7 +62,7 @@ class Worder extends BaseProductor
         return $class;
     }
 
-    public static function updateFormwidget($slug, $formWidget) {
+    public static function updateFormwidget($slug, $formWidget, $config = []) {
         $productorModel = self::getProductor($slug);
         $formWidget->getField('output_name')->value = $productorModel->output_name;
         //Je n'ais pas trouvé de solution pour charger les valeurs. donc je recupère les asks dans un primer temps avec une valeur par defaut qui ne marche pas et je le réajoute ensuite.... 

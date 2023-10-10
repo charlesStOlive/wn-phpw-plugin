@@ -6,6 +6,6 @@ fields:
     contact:
         type: dropdown
         options: listContacts
-        placeholder: waka.wutils::lang.global.placeholder_contact
+        placeholder: waka.wutils::lang.global.placeholder
     
     

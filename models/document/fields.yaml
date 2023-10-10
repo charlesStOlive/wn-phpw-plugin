@@ -14,7 +14,6 @@ fields:
         permissions: [waka.worder.admin.*]
     map_key:
         label: waka.phpw::lang.models.document.map_key
-        comment: waka.phpw::lang.models.document.map_key_com
         span: auto
         permissions: [waka.worder.admin.*]
     path:
