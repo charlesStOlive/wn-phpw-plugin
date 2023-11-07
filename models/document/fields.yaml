@@ -21,32 +21,17 @@ fields:
         type: mediafinder
         span: auto
         permissions: [waka.worder.admin.*]
-tabs:
-    defaultTab: waka.mailer::wakamail.tab_edit
-    icons: 
-        waka.phpw::lang.models.document.tab_edit: icon-pencil
-        waka.phpw::lang.models.document.tab_options: icon-cog
-        waka.phpw::lang.models.document.tab_temp: icon-cog
-    fields:    
-        rule_asks:
-            label: waka.phpw::lang.models.document.rule_asks
-            span: full
-            type: rulebuilder
-            targetProductor: document
-            full_access: waka.rules.asks.admin
-            ruleMode: ask
-            showAttributes: true
-            permissions: [waka.rules.asks.*]
-            tab: waka.phpw::lang.models.document.tab_edit
-secondaryTabs:
-    fields:
-        # info:
-        #     type: modelinfo
-        #     mode: secondary
-        #     src: /waka/phpw/models/document/fields_for_side_bar.yaml
-        # infos:
-        #     span: full
-        #     type: modelinfo
-        #     permissions: [waka.worder.admin.*]
-        #     tab: waka.phpw::lang.models.document.tab_infos
-        #     dsMap: main
+
+    
+# secondaryTabs:
+#     fields:
+#         # info:
+#         #     type: modelinfo
+#         #     mode: secondary
+#         #     src: /waka/phpw/models/document/fields_for_side_bar.yaml
+#         # infos:
+#         #     span: full
+#         #     type: modelinfo
+#         #     permissions: [waka.worder.admin.*]
+#         #     tab: waka.phpw::lang.models.document.tab_infos
+#         #     dsMap: main

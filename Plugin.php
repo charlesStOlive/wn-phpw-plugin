@@ -168,7 +168,7 @@ class Plugin extends PluginBase
             'documents' => [
                 'label' => Lang::get('waka.phpw::lang.menu.documents'),
                 'description' => Lang::get('waka.phpw::lang.menu.documents_description'),
-                'category' => Lang::get('waka.wutils::lang.menu.settings_category_model'),
+                'category' => Lang::get('waka.wutils::lang.menu.model_category'),
                 'icon' => 'icon-file-word-o',
                 'url' => Backend::url('waka/phpw/documents'),
                 'permissions' => ['waka.worder.admin.*'],

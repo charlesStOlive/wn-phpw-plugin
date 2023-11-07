@@ -30,7 +30,9 @@ class WordCreator
     public function saveTo()
     {
         $this->prepareModelData();
+        // \File::makeDirectory(storage_path('app/uploads/tempproductor'));
         $uuid = TinyUuid::generateFromDate();
+
         $basePath = storage_path(sprintf('app/uploads/tempproductor/%s',$uuid));
         \File::makeDirectory($basePath);
         $path = $basePath.'/'.$this->outputName . '.docx';

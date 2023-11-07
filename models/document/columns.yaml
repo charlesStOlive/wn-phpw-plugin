@@ -6,20 +6,19 @@ columns:
     name:
         label: waka.phpw::lang.models.document.name
         searchable: true
-    state:
-        label: waka.phpw::lang.models.document.state
-        searchable: true
+    output_name:
+        label: waka.phpw::lang.models.document.output_name
     slug:
         label: waka.phpw::lang.models.document.slug
         searchable: true
     path:
         label: waka.phpw::lang.models.document.path
         searchable: true
-    is_lot:
-        label: waka.phpw::lang.models.document.is_lot
-        type: switch
-        searchable: false
-        sortable: true
+    # is_lot:
+    #     label: waka.phpw::lang.models.document.is_lot
+    #     type: switch
+    #     searchable: false
+    #     sortable: true
     updated_at:
         label: waka.wutils::lang.global.updated_at
         type: timetense

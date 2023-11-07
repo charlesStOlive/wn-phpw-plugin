@@ -72,6 +72,7 @@ class Worder extends BaseProductor
 
     public static function saveTo(string $templateCode, array $vars = [],  Closure $callback = null) {
         // Créer l'instance de pdf
+        //trace_log('saveTo vars!!!',$vars);
         $creator = self::instanciateCreator($templateCode, $vars);
         // Appeler le callback pour définir les options
         if (is_callable($callback)) {
