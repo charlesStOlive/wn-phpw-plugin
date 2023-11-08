@@ -39,7 +39,7 @@ class Worder extends BaseProductor
             return [
                 'message' => 'Document prêt pour télechargement',
                 'btn' => [
-                    'label' => 'waka.productor::lang.drivers.sucess_label.close_download',
+                    'label' => 'waka.productor::lang.drivers.success_label.close_download',
                     'request' => 'onCloseAndDownload',
                     'link' => $link
                 ],
