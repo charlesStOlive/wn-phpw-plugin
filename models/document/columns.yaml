@@ -11,6 +11,7 @@ columns:
     slug:
         label: waka.phpw::lang.models.document.slug
         searchable: true
+        clickable: false
     path:
         label: waka.phpw::lang.models.document.path
         searchable: true
