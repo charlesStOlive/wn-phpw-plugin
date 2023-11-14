@@ -7,8 +7,8 @@ return [
         ],
     ],
     'driver' => [
-        'label' => 'Créer des documents Word',
         'description' => 'Système Worder',
+        'label' => 'Créer des documents Word',
     ],
     'menu' => [
         'bloc_type' => 'Type de bloc',
@@ -19,25 +19,18 @@ return [
     ],
     'models' => [
         'document' => [
-            'form_name' => 'Gestion document',
-            'is_lot' => 'Autoriser dans les lots ?',
-            'label' => 'Document',
-            'name' => 'Libellé document',
-            'output_name' => 'Construction du nom du fichier',
-            'path' => 'Source du document',
-            'rule_asks' => 'Champs éditables',
-            'slug' => 'Slug ou Code',
-            'state' => 'État',
-            'tab_edit' => 'Éditer document',
-            'tab_infos' => 'Infos',
-            'tab_options' => 'Options',
-            'tab_temp' => 'TEMP',
-            'title' => 'Gestion document',
-            'map_key' => 'Spécifier un code Map ds',
             'controllers' => [
                 'check' => 'Vérifier',
                 'test' => 'Tester',
             ],
+            'is_lot' => 'Autoriser dans les lots ?',
+            'label' => 'Document',
+            'map_key' => 'Spécifier un code Map ds',
+            'name' => 'Libellé document',
+            'output_name' => 'Construction du nom du fichier',
+            'path' => 'Source du document',
+            'slug' => 'Slug ou Code',
+            'tab_infos' => 'Infos',
         ],
     ],
     'word' => [

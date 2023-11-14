@@ -27,7 +27,7 @@ class WordResolver
             throw new \SystemException('Attention ! verifiez votre module de fonction ||' . $tag->varName . '|| Il ne retourne pas un array');
         }
         $countFunctionRows = count($data);
-        $tagName = 'FNC.' . $functionName;
+        $tagName = 'FOR.' . $functionName;
         // trace_log($countFunctionRows, $tag);
         if (!$countFunctionRows) {
             //trace("row vide", $tagName);
@@ -95,8 +95,12 @@ class WordResolver
     public function resolveMdRow($wordTag, $tagData)
     {
         $tagKey = $wordTag->tagType;
-        $tagData = \Markdown::parse($tagData);
-        $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
+        if (!$tagData) {
+            $tagData = '';
+        } else {
+            $tagData = \Markdown::parse($tagData);
+            $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
+        }
         $this->templateProcessor->setHtmlValue($wordTag->tagKey, $tagData, true);
         //$this->templateProcessor->setValue($wordTag->tagKey, "attente correction de html", true);
     }
@@ -104,27 +108,36 @@ class WordResolver
     public function resolveHtmToTxtRow($wordTag, $tagData)
     {
         $tagKey = $wordTag->tagType;
-        $tagData = \Markdown::parse($tagData);
-        $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
-        $tagData = strip_tags($tagData);
+        if (!$tagData) {
+            $tagData = '';
+        } else {
+            $tagData = \Markdown::parse($tagData);
+            $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
+            $tagData = strip_tags($tagData);
+        }
         // $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
         $this->templateProcessor->setValue($wordTag->tagKey, $tagData, true);
     }
 
     public function resolveImgRow($wordTag, $tagData)
     {
-        //trace_log("wordTag = ",$wordTag);
-        //trace_log("tagData = ",$tagData);
+
+        $params = $wordTag->tagParams;
         $path = $tagData['path'] ?? false;
+        $width = null;
+        $height = null;
+
+        
+        $title = $tagData['title'] ?? false;
         $width = $tagData['width'] ?? false;
         $height = $tagData['height'] ?? false;
-        $title = $tagData['title'] ?? false;
-
-        //trace_log(['path' => $path, 'width' => $width . 'px', 'height' => $height . 'px']);
-
-
+        if(!empty($params)) {
+            $width = $params[0] ?? $width;
+            $height = $params[1] ?? $height;
+        } 
+        
         if ($path) {
-            //trace_log($path);
+            // trace_log(['path' => $path, 'width' => $width . 'px', 'height' => $height . 'px']);
             try {
                 if (!$width or !$height) {
                     $this->templateProcessor->setImageValue($wordTag->tagKey, $path);

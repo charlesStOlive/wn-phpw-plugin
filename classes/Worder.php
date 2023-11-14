@@ -33,6 +33,7 @@ class Worder extends BaseProductor
     public function execute($templateCode, $productorHandler, $allDatas):array {
         $this->getBaseVars($allDatas);
         if($productorHandler == "saveTo") {
+            //trace_log($this->data);
     
             $link = self::saveTo($templateCode, $this->data, function($doc) use($allDatas) {
                 $doc->setOutputName(\Arr::get($allDatas, 'productorDataArray.output_name'));
