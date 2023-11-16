@@ -18,6 +18,8 @@ class Documents extends Controller
         \Waka\Wutils\Behaviors\WakaReorderController::class,
     ];
 
+    public $requiredPermissions = ['waka.phpw.admin.*'];
+
     public function __construct()
     {
         parent::__construct();

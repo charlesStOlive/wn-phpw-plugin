@@ -116,19 +116,6 @@ class Plugin extends PluginBase
         }
     }
 
-    /**
-     * Registers any front-end components implemented in this plugin.
-     *
-     * @return array
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'Waka\Phpw\Components\MyComponent' => 'myComponent',
-        ];
-    }
 
     /**
      * Registers any back-end permissions used by this plugin.
@@ -138,17 +125,13 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'waka.phpw.admin.super' => [
-                'tab' => 'Waka - Worder',
-                'label' => 'Super Administrateur de Worder',
-            ],
             'waka.phpw.admin.base' => [
                 'tab' => 'Waka - Worder',
                 'label' => 'Administrateur de Worder',
             ],
-            'waka.phpw.user' => [
+             'waka.phpw.admin.super' => [
                 'tab' => 'Waka - Worder',
-                'label' => 'Utilisateur de Worder',
+                'label' => 'Super Administrateur de Worder',
             ],
         ];
     }
