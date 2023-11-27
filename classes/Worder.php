@@ -19,9 +19,9 @@ class Worder extends BaseProductor
             'productorCreator' => \Waka\Phpw\Classes\WordCreator::class,
             'productor_yaml_config' => '~/plugins/waka/phpw/models/document/productor_config.yaml',
             'methods' => [
-                'saveTo' => [
+                'prepareWordToDownload' => [
                     'label' => 'Créer un document Word', 
-                    'handler' => 'saveTo',
+                    'handler' => 'prepareWordToDownload',
             ]],
         ];
 
@@ -30,25 +30,21 @@ class Worder extends BaseProductor
     
     
 
-    public function execute($templateCode, $productorHandler, $allDatas):array {
+    public function prepareWordToDownload($templateCode, $allDatas):array {
         $this->getBaseVars($allDatas);
-        if($productorHandler == "saveTo") {
             //trace_log($this->data);
     
-            $link = self::saveTo($templateCode, $this->data, function($doc) use($allDatas) {
-                $doc->setOutputName(\Arr::get($allDatas, 'productorDataArray.output_name'));
-            });
-            return [
-                'message' => 'Document prêt pour télechargement',
-                'btn' => [
-                    'label' => 'waka.productor::lang.drivers.success_label.close_download',
-                    'request' => 'onCloseAndDownload',
-                    'link' => $link
-                ],
-            ];
-        } else {
-            return [];
-        }
+        $link = self::saveTo($templateCode, $this->data, function($doc) use($allDatas) {
+            $doc->setOutputName(\Arr::get($allDatas, 'productorDataArray.output_name'));
+        });
+        return [
+            'message' => 'Document prêt pour télechargement',
+            'btn' => [
+                'label' => 'waka.productor::lang.drivers.success_label.close_download',
+                'request' => 'onCloseAndDownload',
+                'link' => $link
+            ],
+        ];
     }
 
     /**
