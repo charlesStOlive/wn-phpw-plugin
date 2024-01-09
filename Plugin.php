@@ -154,18 +154,9 @@ class Plugin extends PluginBase
                 'category' => Lang::get('waka.wutils::lang.menu.model_category'),
                 'icon' => 'icon-file-word-o',
                 'url' => Backend::url('waka/phpw/documents'),
-                'permissions' => ['waka.worder.admin.*'],
+                'permissions' => ['waka.phpw.admin.*'],
                 'order' => 10,
             ],
-            // 'bloc_types' => [
-            //     'label' => Lang::get('waka.phpw::lang.menu.bloc_type'),
-            //     'description' => Lang::get('waka.phpw::lang.menu.bloc_type_description'),
-            //     'category' => Lang::get('waka.phpw::lang.menu.settings_category'),
-            //     'icon' => 'icon-th-large',
-            //     'url' => Backend::url('waka/phpw/bloctypes'),
-            //     'permissions' => ['waka.worder.admin'],
-            //     'order' => 1,
-            // ],
         ];
     }
 }
