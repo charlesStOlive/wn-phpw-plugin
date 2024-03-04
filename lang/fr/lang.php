@@ -11,11 +11,8 @@ return [
         'label' => 'Créer des documents Word',
     ],
     'menu' => [
-        'bloc_type' => 'Type de bloc',
-        'bloc_type_description' => 'Description',
         'documents' => 'Words',
         'documents_description' => 'Gestion des modèles Word',
-        'settings_category' => 'Wakaari Modèle',
     ],
     'models' => [
         'document' => [

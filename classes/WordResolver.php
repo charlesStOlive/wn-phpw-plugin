@@ -80,6 +80,8 @@ class WordResolver
 
         if ($wordTag->tagType != null) {
             $tagData = $this->transformValue($tagData, $wordTag->tagType);
+        } else {
+            //$tagData = preg_replace('/[^\w\s\.\,\;\:\'\"]/u', '', $tagData);
         }
         $this->templateProcessor->setValue($wordTag->tagKey, $tagData);
     }
@@ -88,6 +90,8 @@ class WordResolver
     {
         //trace_log('resoudre un htm------------------------');
         $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
+        //Nettoyage des caractères spéciaux
+        //$tagData = preg_replace('/[^\w\s\.\,\;\:\'\"]/u', '', $tagData);
         $this->templateProcessor->setHtmlValue($wordTag->tagKey, $tagData, true);
         //$this->templateProcessor->setValue($wordTag->tagKey, "attente correction de html", true);
     }
@@ -113,6 +117,8 @@ class WordResolver
         } else {
             $tagData = \Markdown::parse($tagData);
             $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
+            //Nettoyage des caractères spéciaux
+            //$tagData = preg_replace('/[^\w\s\.\,\;\:\'\"]/u', '', $tagData);
             $tagData = strip_tags($tagData);
         }
         // $tagData = html_entity_decode(preg_replace("/[\r\n]{2,}/", "\n", $tagData), ENT_QUOTES, 'UTF-8');
@@ -158,48 +164,5 @@ class WordResolver
     {
         \Log::info(sprintf('les types de value en dehors de HTM et IMG n existe plaus. Il faut les supprimer : %s %s', $value, $type));
         return $value;
-        // if ($value == 'Inconnu') {
-        //     $value = 0;
-        // }
-
-        // if ($type == 'float') {
-        //     return number_format($value, 2, ',', ' ');
-        // }
-
-        // if ($type == 'number' || $type == 'numercic') {
-        //     return number_format($value, 0, ',', ' ');
-        // }
-        // if ($type == 'euro') {
-        //     return number_format($value, 2, ',', ' ') . ' €';
-        // }
-        // if ($type == 'euro_int') {
-        //     return number_format($value, 0, ',', ' ') . ' €';
-        // }
-        // if ($type == 'workflow') {
-        //     //return $this->$dataSource->getWorkflowState();
-        //     return "error 146 wordresolver";
-        // }
-        // if (starts_with($type, 'percent') && $value) {
-        //     $operators = explode("::", $type);
-        //     $percent = $operators[1];
-        //     $value = $value * $percent / 100;
-        //     return number_format($value, 2, ',', ' ') . ' €';
-        // }
-        // if (starts_with($type, 'multiply') && $value) {
-        //     $operators = explode("::", $type);
-        //     $multiply = $operators[1];
-        //     $value = $value * $multiply;
-        //     return number_format($value, 2, ',', ' ') . ' €';
-        // }
-        // if (starts_with($type, 'date') && $value) {
-        //     $date = new WakaDate();
-        //     //trace_log($type);
-        //     //trace_log($value);
-        //     $dateFinal = $date->localeDate($value, $type);
-        //     //trace_log($dateFinal);
-        //     return $dateFinal;
-        // } else {
-        //     return 'Inconnu';
-        // }
     }
 }
